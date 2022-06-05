@@ -1,0 +1,82 @@
+@import url(./header.css);
+@import url(./about.css);
+@import url(./benefits.css);
+@import url(./slogan.css);
+@import url(./questions.css);
+@import url(./striving.css);
+@import url(./feedback.css);
+@import url(./checklist.css);
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url(./footer.css);
+@import url(./blog.css);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  padding: 80px;
+  background-color: #f1f1f1;
+  max-width: 1600px;
+}
+
+.page-container {
+  background-color: black;
+  border: 0 solid black;
+  border-radius: 60px;
+  font-family: 'Helvetica Now Display';
+  padding: 10px;
+}
+
+.span-yellow {
+  color: #eafc9c;
+}
+
+.span-grey {
+  color: #7a7a7a;
+}
+
+.span-line {
+  text-decoration: underline;
+}
+
+a {
+  color: #7a7a7a;
+}
+
+.bg_yellow {
+  background-color: #eafc9c;
+}
+
+.bg_pink {
+  background-color: #f1e0fd;
+}
+
+.bg_white {
+  background-color: #ffffff;
+}
+
+.bg_blue {
+  background-color:#3943F5 ;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    padding: 40px;
+  }
+
+  .page-container {
+    border-radius: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 5px 5px;
+  }
+
+  .page-container {
+    border-radius: 40px;
+  }
+}

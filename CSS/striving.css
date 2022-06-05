@@ -1,0 +1,44 @@
+.striving {
+  margin-bottom: 70px;
+}
+
+.striving__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 76px;
+  line-height: 112px;
+  color: #ffffff;
+  margin-left: 100px;
+}
+
+@media screen and (max-width: 1480px) {
+  .striving__title {
+    text-align: center;
+    line-height: normal;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+  .striving__title {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+  .striving__title {
+    font-size: 38px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .striving__title {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .striving__title {
+    font-size: 20px;
+  }
+}

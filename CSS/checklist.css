@@ -1,0 +1,156 @@
+.checklist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  margin-bottom: 80px;
+}
+
+.checklist__poster {
+  border-radius: 60px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 76px;
+  line-height: 112px;
+  padding: 89px 151px 292px 81px;
+  text-align: left;
+  grid-template-columns: 1/2;
+  grid-row: 1/2;
+  background-image: url("../Img/checklist-hand.png");
+  background-repeat: no-repeat;
+  background-position: bottom right 22%;
+}
+
+.checklist__form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 60px;
+  padding: 49px 92px 39px 91px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  grid-template-columns: 2/3;
+  grid-row: 1/2;
+}
+
+.form__item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.item__label {
+  margin-bottom: 10px;
+}
+
+.item__field {
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 60px;
+  padding: 15px;
+}
+
+.form__notice {
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+.form__button {
+  border: 0;
+  color: #ffffff;
+  border-radius: 60px;
+  background-color: #3943f5;
+  padding: 35px 0;
+  font-size: 20px;
+}
+
+.form__button:hover {
+  background-color:#2f37cd ;
+}
+
+.field__select {
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+}
+
+:nth-child(4) .item__field {
+  position: relative;
+}
+
+:nth-child(4) .item__field::after {
+  content: "▼";
+  position: absolute;
+  right: 15px;
+  top: 18px;
+}
+
+.field-error {
+  color: red;
+  border-color: red;
+}
+.field-correct {
+  border-color: rgb(33, 255, 33);
+}
+
+.error-text {
+  color: red;
+  font-size: 11px;
+  margin: 0;
+}
+
+
+@media screen and (max-width: 1280px) {
+  .checklist__form {
+    padding: 40px;
+  }
+
+  .checklist__poster {
+    padding: 80px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .checklist {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .checklist__poster {
+    font-size: 50px;
+    line-height: normal;
+    padding: 40px;
+
+    background-size: contain;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .checklist__poster {
+    border-radius: 30px;
+    font-size: 40px;
+  }
+
+  .checklist__form {
+    border-radius: 30px;
+  }
+
+  .form__button {
+    border-radius: 30px;
+    font-size: 15px;
+    padding: 20px 0;
+  }
+
+  .form__notice {
+    margin-bottom: 20px;
+  }
+
+  .item__field {
+    border-radius: 20px;
+  }
+
+  .checklist {
+    margin-bottom: 30px;
+  }
+}

@@ -1,0 +1,64 @@
+.about {
+    background-color: black;
+    border-radius: 50px;
+    margin-bottom: 100px;
+    padding: 0 70px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 118px;
+}
+
+.about__text {
+
+color:#FFFFFF;
+border-radius: 50px;
+
+}
+
+
+@media screen and (max-width:1480px) {
+    .about__text {
+        font-size: 60px;
+        line-height: normal;
+    }
+}
+
+@media screen and (max-width:1280px) {
+    .about {
+        margin-bottom: 60px;
+    }
+
+    .about__text {
+        font-size: 40px;
+        
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .about__text {
+        font-size: 30px;
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .about {
+        padding: 0 ;
+        margin-bottom: 30px;
+    }
+    
+    .about__text {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .about__text {
+        font-size: 17px;
+    }
+}
+
+
+

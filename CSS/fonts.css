@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Helvetica Now Display';
+    src: local('Helvetica Now Display Ext Lt'), local('Helvetica-Now-Display-Ext-Lt'),
+        url('../fonts/HelveticaNowDisplay-ExtLt/HelveticaNowDisplay-ExtLt.woff2') format('woff2'),
+        url('../fonts/HelveticaNowDisplay-ExtLt/HelveticaNowDisplay-ExtLt.woff') format('woff'),
+        url('../fonts/HelveticaNowDisplay-ExtLt/HelveticaNowDisplay-ExtLt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Helvetica Now Display';
+    src: local('Helvetica Now Display Regular'), local('Helvetica-Now-Display-Regular'),
+        url('../fonts/HelveticaNowDisplay-Regular.woff2') format('woff2'),
+        url('../fonts/HelveticaNowDisplay-Regular.woff') format('woff'),
+        url('../fonts/HelveticaNowDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
