@@ -5,31 +5,27 @@ class Cache {
     this.request = {}
   }
 
-  setToLocalStorage() {
-    const cacheObject = {
-      searchValue: blog.filterInput.value,
-      sortingByLetters: blog.selectSortingByLetters.value,
-      sortingByDate: blog.selectSortingByDate.value,
-      posts: blog.storage
-    }
-    let posts = []
-    let isConstain = false
+  setToLocalStorage(object) {
+    localStorage.setItem(JSON.stringify(object), JSON.stringify(object.storage))
 
-    for(let i=0; i<localStorage.length; i++) {
-      let key = localStorage.key(i);
-      if (JSON.stringify(cacheObject) === key) {
-        posts = localStorage.getItem(key)
-        console.log('local');
-        isConstain = true
-      }
-    }
+    // let posts = []
+    // let isConstain = false
 
-    if (!isConstain) {
-    posts = blog.filteredStorage
-    console.log(posts);
-    localStorage.setItem(JSON.stringify(cacheObject), JSON.stringify(posts))
-    }
-    return posts
+    // for(let i=0; i<localStorage.length; i++) {
+    //   let key = localStorage.key(i);
+    //   if (JSON.stringify(object) === key) {
+    //     posts = localStorage.getItem(key)
+    //     console.log('local');
+    //     isConstain = true
+    //   }
+    // }
+
+    // if (!isConstain && blog.filterInput.value) {
+    // posts = blog.filteredStorage
+    // console.log(posts);
+
+    // }
+    // return posts
 
   }
 }

@@ -68,5 +68,8 @@ blog.filterInput.addEventListener("input", () => {
 const cache = new Cache()
 
 blog.filterInput.addEventListener("input", () => {
-cache.setToLocalStorage()
+  if (blog.filterInput.value) {
+    cache.setToLocalStorage(blog.filterResult)
+  }
+
 })

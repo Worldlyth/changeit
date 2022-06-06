@@ -124,11 +124,25 @@ class Blog {
   }
 
   filter(arr) {
+
+    for(let i=0; i<localStorage.length; i++) {
+      let key = localStorage.key(i)
+        if (key === JSON.stringify({...this.filterResult, filter: this.filterInput.value}) && this.filterInput.value) {
+          console.log(localStorage.getItem(JSON.stringify(this.filterResult)));
+          console.log(JSON.stringify(this.filterResult));
+          console.log(!!localStorage.getItem(JSON.stringify(this.filterResult)));
+          return
+        }
+    }
+
+
+
       if (this.filterInput.value) {
+
         this.filteredStorage = [...arr]
         this.filteredStorage = this.filteredStorage.filter((post) => {
           if (post.title.toLowerCase().includes(this.filterInput.value.toLowerCase())) {
-            console.log('filter');
+            console.log('filter'); 
               return post
           }
         })
