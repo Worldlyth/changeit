@@ -89,8 +89,10 @@ class Blog {
     this.sortedStorage = [...arr]
     if (this.selectSortingByLetters.value) {
       if (this.selectSortingByLetters.value === "AZ") {
+        console.log('sort');
         this.sortedStorage = this.sortByA(this.sortedStorage)
       } else if (this.selectSortingByLetters.value === "ZA") {
+        console.log('sort');
         this.sortedStorage = this.sortByZ(this.sortedStorage)
       }
       this.render(this.sortedStorage)
@@ -116,15 +118,14 @@ class Blog {
     if (this.filterInput.value) {
       this.filteredStorage = [...arr]
       this.filteredStorage = this.filteredStorage.filter((post) => {
-        if (
-          post.title
-            .toLowerCase()
-            .includes(this.filterInput.value.toLowerCase())
-        ) {
+        if (post.title.toLowerCase().includes(this.filterInput.value.toLowerCase())) {
+          console.log('filter');
           return post
         }
       })
       this.render(this.filteredStorage)
+      this.setFilterResult(arr)
+      console.log(this.setFilterResult(arr));
     } else if (this.selectSortingByLetters.value) {
       this.sortByLetters(this.storage)
     } else if (this.selectSortingByDate.value) {
@@ -151,3 +152,4 @@ class Blog {
     return this.filterResult
   }
 }
+

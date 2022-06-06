@@ -1,26 +1,28 @@
 class Cache {
   constructor() {
     this.storage = []
+    this.cache = []
+    this.isContain = null
   }
 
-  isContain(filterResult) {
-    for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i)
+    get(filterResult) {
+    let isContain = false
+
+    for(let i=0; i<localStorage.length; i++) {
+      let key = localStorage.key(i);
       if (JSON.stringify(filterResult) === key) {
-        this.storage = localStorage.getItem(key)
         console.log('local');
-        return true
+        isContain = true
+        this.storage = localStorage.getItem(key)
       }
+    }
+
+    if (!isContain) {
+    this.cache = filterResult.storage
+    console.log(this.cache);
+    localStorage.setItem(JSON.stringify(filterResult), JSON.stringify(this.cache))
+    }
+    return this.cache
   }
 }
 
-  setToCache(filterResult) { {
-      this.storage = filterResult.storage
-      localStorage.setItem(
-        JSON.stringify(filterResult),
-        JSON.stringify(this.storage)
-      )
-    }
-    return this.storage
-  }
-}

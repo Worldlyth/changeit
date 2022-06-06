@@ -27,7 +27,7 @@ const blogSettings = {
   selectSortingByLetters: document.querySelector("#selectSortingByLetters"),
   selectSortingByDate: document.querySelector("#selectSortingByDate"),
   blogStorage: document.querySelector(".stories__blog"),
-  filterResult: {}
+  filterResult: {},
 }
 
 const blog = new Blog(blogSettings)
@@ -43,10 +43,8 @@ blog.selectSortingByLetters.addEventListener("change", () => {
   blog.selectSortingByDate.value = ""
   if (blog.filterInput.value) {
     blog.sortByLetters(blog.filteredStorage)
-    blog.setFilterResult(blog.sortedStorage)
   } else {
     blog.sortByLetters(blog.storage)
-    blog.setFilterResult(blog.sortedStorage)
   }
 })
 
@@ -60,31 +58,12 @@ blog.selectSortingByDate.addEventListener("change", () => {
 })
 
 blog.filterInput.addEventListener("input", () => {
-  if (blog.selectSortingByLetters.value) {
-    blog.filter(blog.sortedStorage)
-    blog.setFilterResult(blog.filteredStorage)
-  } else {
-    blog.filter(blog.storage)
-    blog.setFilterResult(blog.filteredStorage)
-  }
+    if (blog.selectSortingByLetters.value) {
+      blog.filter(blog.sortedStorage)
+    } else {
+      blog.filter(blog.storage)
+    }
 })
 
 const cache = new Cache()
 
-blog.selectSortingByLetters.addEventListener("change", () => {
-  if (!cache.isContain(blog.filterResult)) {
-    cache.setToCache(blog.filterResult)
-  }
-})
-
-blog.selectSortingByDate.addEventListener("change", () => {
-  if (!cache.isContain(blog.filterResult)) {
-    cache.setToCache(blog.filterResult)
-  }
-})
-
-blog.filterInput.addEventListener("input",()=>{
-  if (!cache.isContain(blog.filterResult) && blog.filterInput.value) {
-    cache.setToCache(blog.filterResult)
-  }
-})
