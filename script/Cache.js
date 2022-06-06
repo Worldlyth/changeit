@@ -2,27 +2,34 @@ class Cache {
   constructor() {
     this.storage = []
     this.cache = []
-    this.isContain = null
+    this.request = {}
   }
 
-    get(filterResult) {
-    let isContain = false
+  setToLocalStorage() {
+    const cacheObject = {
+      searchValue: blog.filterInput.value,
+      sortingByLetters: blog.selectSortingByLetters.value,
+      sortingByDate: blog.selectSortingByDate.value,
+      posts: blog.storage
+    }
+    let posts = []
+    let isConstain = false
 
     for(let i=0; i<localStorage.length; i++) {
       let key = localStorage.key(i);
-      if (JSON.stringify(filterResult) === key) {
+      if (JSON.stringify(cacheObject) === key) {
+        posts = localStorage.getItem(key)
         console.log('local');
-        isContain = true
-        this.storage = localStorage.getItem(key)
+        isConstain = true
       }
     }
 
-    if (!isContain) {
-    this.cache = filterResult.storage
-    console.log(this.cache);
-    localStorage.setItem(JSON.stringify(filterResult), JSON.stringify(this.cache))
+    if (!isConstain) {
+    posts = blog.filteredStorage
+    console.log(posts);
+    localStorage.setItem(JSON.stringify(cacheObject), JSON.stringify(posts))
     }
-    return this.cache
+    return posts
+
   }
 }
-
