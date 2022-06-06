@@ -6,14 +6,11 @@ class Blog {
     this.storage = settings.storage
     this.filteredStorage = settings.filteredStorage
     this.sortedStorage = settings.sortedStorage
-    this.sortedFilteredStorage = settings.sortedFilteredStorage
     this.filterInput = settings.filterInput
     this.selectSortingByLetters = settings.selectSortingByLetters
     this.selectSortingByDate = settings.selectSortingByDate
-    this.filterResult = settings.filterResult
-    this.sortByLettersStamp = settings.sortByLettersStamp
-    this.sortByDateStamp = settings.sortByDateStamp
     this.blogStorage = settings.blogStorage
+    this.filterResult = settings.filterResult
   }
 
   formatDate() {
@@ -29,8 +26,8 @@ class Blog {
     for (let key in date) {
       if (date[key] < 10) date[key] = `0${date[key]}`
     }
-    //TODO remove seconds
-    return `${date.year}-${date.month}-${date.day} ${date.hours}:${date.minutes}:${date.seconds}`
+
+    return `${date.year}-${date.month}-${date.day} ${date.hours}:${date.minutes}`
   }
 
   setPostData() {
@@ -64,7 +61,6 @@ class Blog {
     })
   }
 
-
   sortByA(arr) {
     return arr.sort((a, b) => {
       if (a.title < b.title) {
@@ -93,10 +89,8 @@ class Blog {
     this.sortedStorage = [...arr]
     if (this.selectSortingByLetters.value) {
       if (this.selectSortingByLetters.value === "AZ") {
-        this.sortByLettersStamp = "AZ"
         this.sortedStorage = this.sortByA(this.sortedStorage)
       } else if (this.selectSortingByLetters.value === "ZA") {
-        this.sortByLettersStamp = "ZA"
         this.sortedStorage = this.sortByZ(this.sortedStorage)
       }
       this.render(this.sortedStorage)
@@ -122,8 +116,12 @@ class Blog {
     if (this.filterInput.value) {
       this.filteredStorage = [...arr]
       this.filteredStorage = this.filteredStorage.filter((post) => {
-        if (post.title.toLowerCase().includes(this.filterInput.value.toLowerCase())) {
-            return post
+        if (
+          post.title
+            .toLowerCase()
+            .includes(this.filterInput.value.toLowerCase())
+        ) {
+          return post
         }
       })
       this.render(this.filteredStorage)
@@ -136,4 +134,20 @@ class Blog {
     }
   }
 
+  resetFields () {
+    this.selectSortingByLetters.value = ""
+    this.selectSortingByDate.value = ""
+    this.title.value = ""
+    this.text.value = ""
+  }
+
+  setFilterResult (arr) {
+    this.filterResult = {
+      filter: blog.filterInput.value,
+      sortingByLetters: blog.selectSortingByLetters.value,
+      sortingByDate: blog.selectSortingByDate.value,
+      storage: arr,
+    }
+    return this.filterResult
+  }
 }
