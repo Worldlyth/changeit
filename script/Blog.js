@@ -169,15 +169,12 @@ class Blog {
       }
     } else {
       if (this.filterInput.value) {
+
         this.filteredStorage = [...arr]
         this.filteredStorage = this.filteredStorage.filter((post) => {
-          if (
-            post.title
-              .toLowerCase()
-              .includes(this.filterInput.value.toLowerCase())
-          ) {
-            console.log("filter")
-            return post
+          if (post.title.toLowerCase().includes(this.filterInput.value.toLowerCase())) {
+            console.log('filter'); 
+              return post
           }
         })
         this.setFilterResult()
