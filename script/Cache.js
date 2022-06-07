@@ -1,35 +1,40 @@
 class Cache {
   constructor() {
     this.storage = []
-    this.cache = []
-    this.request = {}
   }
 
-  setToLocalStorage() {
-    const cacheObject = {
-      searchValue: blog.filterInput.value,
-      sortingByLetters: blog.selectSortingByLetters.value,
-      sortingByDate: blog.selectSortingByDate.value,
-      posts: blog.storage
-    }
-    let posts = []
-    let isConstain = false
-
-    for(let i=0; i<localStorage.length; i++) {
-      let key = localStorage.key(i);
-      if (JSON.stringify(cacheObject) === key) {
-        posts = localStorage.getItem(key)
-        console.log('local');
-        isConstain = true
+  isContain() {
+      for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i)
+        let parsedItem = JSON.parse(key)
+        if (
+          parsedItem.key === blog.storage.length &&
+          parsedItem.filter === blog.filterInput.value &&
+          blog.selectSortingByLetters.value === parsedItem.sortingByLetters &&
+          blog.selectSortingByDate.value === parsedItem.sortingByDate
+        ) {
+          cache.storage = localStorage.getItem(key)
+          cache.storage = JSON.parse(cache.storage)
+          return true
+        }
       }
-    }
+  }
 
-    if (!isConstain) {
-    posts = blog.filteredStorage
-    console.log(posts);
-    localStorage.setItem(JSON.stringify(cacheObject), JSON.stringify(posts))
-    }
-    return posts
-
+  set(filterResult, storage) {
+    localStorage.setItem(JSON.stringify(filterResult), JSON.stringify(storage))
   }
 }
+
+// let isContain = false
+
+// if (blog.filterInput.value) {
+// for(let i = 0; i < localStorage.length; i++) {
+//   let key = localStorage.key(i)
+//   let parsedItem = JSON.parse(key)
+//   if (parsedItem.key.length === blog.storage.length && parsedItem.filter === blog.filterInput.value) {
+//     cache.storage = localStorage.getItem(JSON.stringify(blog.filterResult))
+//     cache.storage = JSON.parse(cache.storage)
+//     blog.render(cache.storage)
+//     isContain = true
+//   }
+//  }

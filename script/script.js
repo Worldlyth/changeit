@@ -29,7 +29,7 @@ const blogSettings = {
   blogStorage: document.querySelector(".stories__blog"),
   filterResult: {},
 }
-
+const cache = new Cache()
 const blog = new Blog(blogSettings)
 
 blog.form.addEventListener("submit", (e) => {
@@ -65,8 +65,5 @@ blog.filterInput.addEventListener("input", () => {
     }
 })
 
-const cache = new Cache()
 
-blog.filterInput.addEventListener("input", () => {
-cache.setToLocalStorage()
-})
+
