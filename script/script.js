@@ -58,11 +58,9 @@ blog.selectSortingByDate.addEventListener("change", () => {
 })
 
 blog.filterInput.addEventListener("input", () => {
-    if (blog.selectSortingByLetters.value) {
-      blog.filter(blog.sortedStorage)
-    } else {
-      blog.filter(blog.storage)
-    }
+  if (blog.selectSortingByLetters.value) {
+    blog.filter(blog.sortedStorage)
+  } else {
+    blog.filter(blog.storage)
+  }
 })
-
-

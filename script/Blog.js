@@ -11,8 +11,6 @@ class Blog {
     this.selectSortingByLetters = settings.selectSortingByLetters
     this.selectSortingByDate = settings.selectSortingByDate
     this.filterResult = settings.filterResult
-    this.sortByLettersStamp = settings.sortByLettersStamp
-    this.sortByDateStamp = settings.sortByDateStamp
     this.blogStorage = settings.blogStorage
   }
 
@@ -23,13 +21,12 @@ class Blog {
       day: new Date().getDate(),
       hours: new Date().getHours(),
       minutes: new Date().getMinutes(),
-      seconds: new Date().getSeconds(),
     }
 
     for (let key in date) {
       if (date[key] < 10) date[key] = `0${date[key]}`
     }
-    //TODO remove seconds
+
     return `${date.year}-${date.month}-${date.day} ${date.hours}:${date.minutes}`
   }
 
@@ -74,7 +71,6 @@ class Blog {
       }
       return 0
     })
-    
   }
 
   sortByZ(arr) {
@@ -89,75 +85,64 @@ class Blog {
     })
   }
 
-  sortByLetters(arr) {
+  sortByDateUp(arr) {
+    console.log("sort")
+    arr.sort((a, b) => {
+      return Date.parse(a.date) - Date.parse(b.date)
+    })
+  }
 
-    if (this.selectSortingByLetters.value) {
-
-      if (this.selectSortingByLetters.value === "AZ") {
-        if (cache.isContain()) {
-          blog.render(cache.storage)
-          console.log('local');
-        } else {
-          this.sortedStorage = [...arr]
-          this.sortedStorage = this.sortByA(this.sortedStorage)
-          console.log("sort")
-          this.setFilterResult()
-          cache.set(blog.filterResult, this.sortedStorage)
-
-      this.render(this.sortedStorage)
-        }
-
-
-      } else if (this.selectSortingByLetters.value === "ZA") {
-        if (cache.isContain()) {
-          blog.render(cache.storage)
-          console.log('local');
-        } else {
-          this.sortedStorage = [...arr]
-        this.sortedStorage = this.sortByZ(this.sortedStorage)
-        console.log("sort")
-        this.setFilterResult()
-        cache.set(blog.filterResult, this.sortedStorage)
-
-      this.render(this.sortedStorage)
-        }
-      }
-    } else {
-      this.render(arr)
-    }
+  sortByDateDown(arr) {
+    console.log("sort")
+    arr.sort((a, b) => {
+      return Date.parse(b.date) - Date.parse(a.date)
+    })
   }
 
   sortByDate(arr) {
-    if (this.selectSortingByDate.value === "dateUp") {
-      if (cache.isContain()) {
+    if (this.selectSortingByDate.value) {
+      if (this.selectSortingByDate.value === "dateUp") {
+        this.sortByDateUp(arr)
+      } else if (this.selectSortingByDate.value === "dateDown") {
+        this.sortByDateDown(arr)
+      }
+    } else {
+      this.render(blog.storage)
+    }
+    this.render(arr)
+  }
+
+  sortByLetters(arr) {
+    if (this.selectSortingByLetters.value) {
+      if (this.selectSortingByLetters.value === "AZ") {
+        if (cache.isContain()) {
           blog.render(cache.storage)
           console.log("local")
         } else {
           this.sortedStorage = [...arr]
-          this.sortedStorage.sort((a, b) => {
-            console.log("sort")
-            return Date.parse(a.date) - Date.parse(b.date)
-          })
+          this.sortedStorage = this.sortByA(this.sortedStorage)
+          console.log("sort")
+
           this.setFilterResult()
           cache.set(blog.filterResult, this.sortedStorage)
           this.render(this.sortedStorage)
         }
-
-    } else if (this.selectSortingByDate.value === "dateDown") {
-      if (cache.isContain()) {
-        blog.render(cache.storage)
-        console.log("local")
-      } else {
-        this.sortedStorage = [...arr]
-        arr.sort((a, b) => {
+      } else if (this.selectSortingByLetters.value === "ZA") {
+        if (cache.isContain()) {
+          blog.render(cache.storage)
+          console.log("local")
+        } else {
+          this.sortedStorage = [...arr]
+          this.sortedStorage = this.sortByZ(this.sortedStorage)
           console.log("sort")
-          return Date.parse(b.date) - Date.parse(a.date) 
-        })
-        this.setFilterResult()
-        cache.set(blog.filterResult, this.sortedStorage)
-        this.render(this.sortedStorage)
-      }
 
+          this.setFilterResult()
+          cache.set(blog.filterResult, this.sortedStorage)
+          this.render(this.sortedStorage)
+        }
+      }
+    } else {
+      this.render(arr)
     }
   }
 
@@ -169,12 +154,15 @@ class Blog {
       }
     } else {
       if (this.filterInput.value) {
-
         this.filteredStorage = [...arr]
         this.filteredStorage = this.filteredStorage.filter((post) => {
-          if (post.title.toLowerCase().includes(this.filterInput.value.toLowerCase())) {
-            console.log('filter'); 
-              return post
+          if (
+            post.title
+              .toLowerCase()
+              .includes(this.filterInput.value.toLowerCase())
+          ) {
+            console.log("filter")
+            return post
           }
         })
         this.setFilterResult()
